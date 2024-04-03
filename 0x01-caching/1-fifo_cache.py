@@ -5,7 +5,6 @@ FIFOCache module
 BaseCaching = __import__('0-basic_cache').BaseCaching
 
 
-
 class FIFOCache(BaseCaching):
     """class that implements fifo caching algorithm """
 
@@ -16,11 +15,13 @@ class FIFOCache(BaseCaching):
     def put(self, key, item):
         """ assigns to dictionary self.cache_data the item for the key value
         """
-        if (
-            len(self.cache_data) >= BaseCaching.MAX_ITEMS and
-	    key not in self.cache_data
-            ):
+        if key is None or item is None:
+            return
+
+        length = len(self.cache_data)
+        if length >= BaseCaching.MAX_ITEMS and key not in self.cache_data:
             discard_key = next(iter(self.cache_data))
+            del_value = self.cache_data.pop(discard_key)
             print(f"DISCARD: {discard_key}")
         self.cache_data[key] = item
 
