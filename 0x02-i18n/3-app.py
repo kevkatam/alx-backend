@@ -21,7 +21,7 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-@babel.localeselector
+"""@babel.localeselector"""
 def get_locale() -> Union[str, None]:
     """ defines the locale to use """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -30,7 +30,7 @@ def get_locale() -> Union[str, None]:
 @app.route('/')
 def index() -> str:
     """renders template"""
-    return render_template('2-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
