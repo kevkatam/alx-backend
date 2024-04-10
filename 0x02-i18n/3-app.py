@@ -2,8 +2,8 @@
 """
 flask app module
 """
-from flask import Flask, render_template, request, g
-from flask_babel import Babel, _
+from flask import Flask, render_template, request
+from flask_babel import Babel
 from typing import Union
 
 
@@ -21,7 +21,7 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-"""@babel.localeselector"""
+@babel.localeselector
 def get_locale() -> Union[str, None]:
     """ defines the locale to use """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
